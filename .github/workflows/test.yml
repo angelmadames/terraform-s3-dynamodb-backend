@@ -1,0 +1,31 @@
+name: 🧪 Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 💻 Checkout current code ref
+        uses: actions/checkout@v4
+
+      - name: 🟣 Configure Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '1.7.5'
+
+      - name: 📝 Terraform Format
+        run: terraform fmt -check -recursive
+
+      - name: 🏗️ Initialization
+        run: terraform init
+
+      - name: 📋 Validate
+        run: terraform validate
