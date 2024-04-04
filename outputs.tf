@@ -10,3 +10,8 @@ output "bucket_arn" {
 output "bucket_region" {
   value = aws_s3_bucket.this.region
 }
+
+# AWS DynamoDB - Outputs
+output "table_name" {
+  value = aws_dynamodb_table.this.name
+}

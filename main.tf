@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "this" {
   }
 }
 
-resource "aws_dynamodb_table" "basic-dynamodb-table" {
+resource "aws_dynamodb_table" "this" {
   name           = var.table_name
   billing_mode   = "PROVISIONED"
   read_capacity  = var.table_read_capacity
